@@ -1,13 +1,16 @@
 package edu.yu.cs;
 
+import edu.yu.cs.verification.Verifier;
+
 /**
  * Hello world!
  *
  */
 public class Counter 
 {
+    private Verifier verifier;
     public Counter() {
-        //empty constructor
+        this.verifier = new Verifier();
     }
 
     /**
@@ -18,12 +21,8 @@ public class Counter
      * @return the sum of first and second
      */
     public int add(int first, int second) {
-        if (first < 0 || second < 0) {
-            throw new IllegalArgumentException("Arguments must be non-negative");
-        }
-        if (first >= Integer.MAX_VALUE/2 || second >= Integer.MAX_VALUE/2) {
-            throw new IllegalArgumentException("Arguments must be less than half of Integer.MAX_VALUE to avoid an overflow");
-        }
+        verifier.verify(first);
+        verifier.verify(second);
         return first + second;
     }
 }
